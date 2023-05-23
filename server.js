@@ -1,7 +1,7 @@
 const express = require('express');
 const inquirer = require("inquirer");
 const db = require('./db/connection');
-require('console.table');
+// const tables = require('console.table');
 const mysql = require('mysql2');
 
 const PORT = process.env.PORT || 3001;
@@ -60,6 +60,28 @@ const navigateChoices = () => {
         }
     })
 };
+
+const viewAllDepartments = () => {
+    db.query('SELECT * FROM department;', function (err, results) {
+        console.table(results);
+        navigateChoices();
+      });
+}
+
+const viewAllRoles = () => {
+    db.query('SELECT * FROM role;', function (err, results) {
+        console.table(results);
+        navigateChoices();
+      });
+}
+
+const viewAllEmployees = () => {
+    db.query('SELECT * FROM employee;', function (err, results) {
+        console.table(results);
+        navigateChoices();
+      });
+}
+
 
 navigateChoices();
 
