@@ -1,7 +1,6 @@
 const express = require('express');
 const inquirer = require("inquirer");
 const db = require('./db/connection');
-// const tables = require('console.table');
 const mysql = require('mysql2');
 
 const PORT = process.env.PORT || 3001;
@@ -124,20 +123,57 @@ const addARole = () => {
     })
 };
 
-// const addAnEmployee = () => {
-//     db.query('SELECT * FROM role;', function (err, results) {
-//         console.table(results);
-//         navigateChoices();
-//     });
-// }
+const addAnEmployee = () => {
+    inquirer.prompt([{
+        type: "input",
+        name: "firstName",
+        message: "What is the new employee's first name"
+    },
+    {
+        type: "input",
+        name: "lastName",
+        message: "What is the new employee's last name?"
+    },
+    {
+        type: "number",
+        name: "roleID",
+        message: "What is the Role ID associated with this new employee?"
+    },
+    {
+        type: "number",
+        name: "manager",
+        message: "What is the Id of the manager the new employee reports to?"
+    },
+    ]).then((answer) => {
+        db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.firstName, answer.lastName, answer.roleID, answer.manager], (err, results) => {
+            db.query("SELECT * FROM employee", (err, results) => {
+                console.table(results);
+                navigateChoices();
+            })
+        })
+    })
+};
 
-// const updateAnEmployeeRole = () => {
-//     db.query('SELECT * FROM role;', function (err, results) {
-//         console.table(results);
-//         navigateChoices();
-//     });
-// }
-
+const updateAnEmployeeRole = () => {
+    inquirer.prompt([{
+        type: "number",
+        name: "employeeID",
+        message: "What is the ID number of the employee you wish to update?"
+    },
+    {
+        type: "number",
+        name: "roleID",
+        message: "What is ID of the role you wish to update the employee to?"
+    }
+    ]).then((answer) => {
+        db.query("UPDATE employee SET role_id = ? WHERE id = ?", [answer.roleID, answer.employeeID], (err, results) => {
+            db.query("SELECT * FROM employee", (err, results) => {
+                console.table(results);
+                navigateChoices();
+            })
+        })
+    })
+};
 
 navigateChoices();
 
