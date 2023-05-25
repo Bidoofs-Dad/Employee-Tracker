@@ -31,6 +31,8 @@ I ran into a few issues when building this, some were solved, some I used a work
 
 Below I will include a video of the application working as well as some screenshots!
 
+[Demonstration.webm](https://github.com/Bidoofs-Dad/Employee-Tracker/assets/126542828/373fae96-bde5-4a10-94fc-ee64563f46cf)
+
 ![Employee Tracker](./Assets/Screenshot%201.png)
 ![Employee Tracker](./Assets/Screenshot%202.png)
 
