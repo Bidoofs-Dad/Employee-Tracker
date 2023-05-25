@@ -38,7 +38,7 @@ Below I will include a video of the application working as well as some screensh
 
 In conclusion, I enjoyed this project to the extent of learning mysql a bit more! I just have to solidify the workings of it a bit more (looking at you JOIN), other than that, it wasn't terribly difficult and well, I appreciated that part of it too!
 
-## The Links
+## The Link
 
 Below is the link that will take you to the repository of this application!
 

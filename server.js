@@ -182,6 +182,7 @@ const updateAnEmployeeRole = () => {
     })
 };
 
+// This calls the starting function as soon as you call node server.js
 navigateChoices();
 
 app.listen(PORT, () => {
