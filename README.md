@@ -31,9 +31,8 @@ I ran into a few issues when building this, some were solved, some I used a work
 
 Below I will include a video of the application working as well as some screenshots!
 
-![Employee Tracker](./assets/Screenshot%201.png)
-
-
+![Employee Tracker](./Assets/Screenshot%201.png)
+![Employee Tracker](./Assets/Screenshot%202.png)
 
 ## Conclusion
 
@@ -43,4 +42,4 @@ In conclusion, I enjoyed this project to the extent of learning mysql a bit more
 
 Below is the link that will take you to the repository of this application!
 
-https://github.com/Bidoofs-Dad/SVG-Logo-Maker
+https://github.com/Bidoofs-Dad/Employee-Tracker
