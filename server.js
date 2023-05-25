@@ -60,6 +60,7 @@ const navigateChoices = () => {
     })
 };
 
+// Will show you a table of all the departments
 const viewAllDepartments = () => {
     db.query('SELECT * FROM department;', function (err, results) {
         console.table(results);
@@ -67,6 +68,7 @@ const viewAllDepartments = () => {
     });
 }
 
+// Will show you a table of all the roles
 const viewAllRoles = () => {
     db.query('SELECT * FROM role;', function (err, results) {
         console.table(results);
@@ -74,6 +76,7 @@ const viewAllRoles = () => {
     });
 }
 
+// Will show you a table of all current employees
 const viewAllEmployees = () => {
     db.query('SELECT employee.id, first_name, last_name, role.title, department.name, role.salary, manager_id FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id;', function (err, results) {
         console.table(results);
@@ -81,6 +84,7 @@ const viewAllEmployees = () => {
     });
 }
 
+// Will take you through a prompt to create a new department, it then will show you a table of all current departments
 const addADepartment = () => {
     inquirer.prompt({
         type: "input",
@@ -97,6 +101,7 @@ const addADepartment = () => {
     })
 };
 
+// Will take you through a prompt to create a new role, it then will show you a table of all current roles
 const addARole = () => {
     inquirer.prompt([{
         type: "input",
@@ -123,6 +128,7 @@ const addARole = () => {
     })
 };
 
+// Will take you through a prompt to add a new employee to the database, it then will show you a table of all current employees
 const addAnEmployee = () => {
     inquirer.prompt([{
         type: "input",
@@ -146,7 +152,7 @@ const addAnEmployee = () => {
     },
     ]).then((answer) => {
         db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.firstName, answer.lastName, answer.roleID, answer.manager], (err, results) => {
-            db.query("SELECT * FROM employee", (err, results) => {
+            db.query("SELECT employee.id, first_name, last_name, role.title, department.name, role.salary, manager_id FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id;", (err, results) => {
                 console.table(results);
                 navigateChoices();
             })
@@ -154,6 +160,7 @@ const addAnEmployee = () => {
     })
 };
 
+// Will take you through a prompt to update an existing employee, it then will show you a table of all current employees
 const updateAnEmployeeRole = () => {
     inquirer.prompt([{
         type: "number",
@@ -167,7 +174,7 @@ const updateAnEmployeeRole = () => {
     }
     ]).then((answer) => {
         db.query("UPDATE employee SET role_id = ? WHERE id = ?", [answer.roleID, answer.employeeID], (err, results) => {
-            db.query("SELECT * FROM employee", (err, results) => {
+            db.query("SELECT employee.id, first_name, last_name, role.title, department.name, role.salary, manager_id FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id;", (err, results) => {
                 console.table(results);
                 navigateChoices();
             })
